@@ -10,6 +10,9 @@ var playPauseIcon;
 var muteBtn;
 var muteIcon;
 var progressBar;
+var like;
+var unlike;
+var volume;
 
 
 function initialiseMediaPlayer() {
@@ -22,6 +25,9 @@ function initialiseMediaPlayer() {
     muteBtn = document.getElementById('mute-button');
     muteIcon = document.getElementById('mute-icon');
 	progressBar = document.getElementById('progress-bar');
+	like = document.getElementById('video-like');
+	unlike = document.getElementById('video-unlike');
+	volume = document.getElementById('video-volume');
 
 	// Hide the browser's default controls
 	videoPlayer.controls = false;
@@ -42,10 +48,22 @@ function initialiseMediaPlayer() {
 	// need to work on this one more...how to know it's muted?
 	videoPlayer.addEventListener('volumechange', function(e) { 
 		// Update the button to be mute/unmute
-		if (videoPlayer.muted) changeButtonIcon(muteIcon, 'fa-volume-mute', 'fa-volume-up');
-		else changeButtonIcon(muteIcon, 'fa-volume-up', 'fa-volume-mute');
+		if (videoPlayer.muted) changeButtonIcon(muteIcon, 'fa-volume-up', 'fa-volume-mute');
+		else changeButtonIcon(muteIcon, 'fa-volume-mute', 'fa-volume-up');
 	}, false);	
-	videoPlayer.addEventListener('ended', function() { this.pause(); }, false);	
+	videoPlayer.addEventListener('ended', function() { this.pause(); }, false);
+
+	// initial web storage
+	if ((localStorage.getItem('like') == undefined) && localStorage.getItem('unlike') == undefined){
+		localStorage.setItem('like', 0);
+		localStorage.setItem('unlike', 0)
+		like.innerText = localStorage.getItem('like');
+		unlike.innerText = localStorage.getItem('unlike');
+	}else{
+		like.innerText = localStorage.getItem('like');
+		unlike.innerText = localStorage.getItem('unlike');
+	}
+	volume.innerText = videoPlayer.volume*10;
 }
 
 
@@ -77,19 +95,21 @@ function changeVolume(direction) {
 	if (direction === '+') videoPlayer.volume += videoPlayer.volume == 1 ? 0 : 0.1;
 	else videoPlayer.volume -= (videoPlayer.volume == 0 ? 0 : 0.1);
 	videoPlayer.volume = parseFloat(videoPlayer.volume).toFixed(1);
+	volume.innerText = videoPlayer.volume*10;
+
 }
 
 // Toggles the media player's mute and unmute status
 function toggleMute() {
 	if (videoPlayer.muted) {
 		// Change the cutton to be a mute button
-		changeButtonIcon(muteIcon, 'fa-volume-mute', 'fa-volume-up');
+		changeButtonIcon(muteIcon, 'fa-volume-up', 'fa-volume-mute');
 		// Unmute the media player
 		videoPlayer.muted = false;
 	}
 	else {
 		// Change the button to be an unmute button
-		changeButtonIcon(muteIcon, 'fa-volume-up', 'fa-volume-mute');
+		changeButtonIcon(muteIcon, 'fa-volume-mute', 'fa-volume-up');
 		// Mute the media player
 		videoPlayer.muted = true;
 	}
@@ -149,4 +169,19 @@ function resetPlayer() {
 	videoPlayer.currentTime = 0;
 	// Ensure that the play pause button is set as 'play'
     changeButtonIcon(playPauseIcon, 'fa-play-circle', 'fa-pause-circle');
+}
+
+// Click the like currently video
+function likeVideo() {
+	var c_number = localStorage.getItem('like');
+	localStorage.setItem('like', parseInt(c_number)+1);
+	like.innerText = localStorage.getItem('like');
+}
+
+// Click the unlike currently video
+function unlikeVideo() {
+	var c_number = localStorage.getItem('unlike');
+	localStorage.setItem('unlike', parseInt(c_number)+1)
+	unlike.innerText = localStorage.getItem('unlike');
+
 }

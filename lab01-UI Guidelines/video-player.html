@@ -27,9 +27,9 @@
 			<button type='button' id='stop-button' class='btn btn-dark' onclick='stopPlayer();'><em class='fas fa-stop-circle'></em></button>
 			<button type='button' id='volume-inc-button' class='btn btn-dark' onclick='changeVolume("+");'><em class="fas fa-plus-circle"></em></button>
 			<button type='button' id='volume-dec-button' class='btn btn-dark' onclick='changeVolume("-");'><em class="fas fa-minus-circle"></em></button>
-            <button type='button' id='mute-button' class='btn btn-dark' onclick='toggleMute("true");'><em id='mute-icon' class="fas fa-volume-mute"></em></button>
-            <button type='button' id='like-button' class='btn btn-dark' onclick=''><em class="far fa-thumbs-up"></em></button>
-            <button type='button' id='unlike-button' class='btn btn-dark' onclick=''><em class="far fa-thumbs-down"></em></button>
+            <button type='button' id='mute-button' class='btn btn-dark' onclick='toggleMute("true");'><em id='mute-icon' class="fas fa-volume-up"></em><span id='video-volume' class="badge badge-light" style="color: lightblue;"></span></button>
+            <button type='button' id='like-button' class='btn btn-dark' onclick='likeVideo()'><em class="far fa-thumbs-up"></em><span id='video-like' class="badge badge-light" style="color: green;"></span></button>
+            <button type='button' id='unlike-button' class='btn btn-dark' onclick='unlikeVideo()'><em class="far fa-thumbs-down"></em><span id='video-unlike' class="badge badge-light" style="color: red;"></span></button>
 		</div>
 		<div id='media-play-list'>
 			<h1>Play list</h1>
@@ -39,6 +39,6 @@
                     <li class="list-group-item" onclick='loadVideo("./video/example2.mp4");'>Example-2</li>
                   </ul>
 		</div>
-	</div>	
+    </div>
 </body>
 </html>
