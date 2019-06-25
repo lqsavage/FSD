@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8' />
+        <title>Video Player</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+        <link href='video-player.css' rel='stylesheet' />
+        <script src='video-player.js'></script>
+	</head>
+<body>
+	<h1>Customize Vedio Player on HTML5</h1>
+	<div id='video-player'>
+		<video id='media-video'>
+			<source src='./video/example.mp4' type='video/mp4'>
+        </video>
+        <div class="progress">
+            <div id='progress-bar' class="progress-bar bg-dark progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+         </div>
+		<div id='media-controls' style="margin-bottom: 5px;">
+            <button type='button' id='replay-button' class='btn btn-dark' onclick='replayMedia();'>
+                <em class="fas fa-reply"></em>
+            </button>	
+            <button type="button" id='play-pause-button' class="btn btn-dark"  onclick='togglePlayPause();'>
+                <em id="play-pause-icon" class="far fa-play-circle"></em>
+            </button>
+			<button type='button' id='stop-button' class='btn btn-dark' onclick='stopPlayer();'><em class='fas fa-stop-circle'></em></button>
+			<button type='button' id='volume-inc-button' class='btn btn-dark' onclick='changeVolume("+");'><em class="fas fa-plus-circle"></em></button>
+			<button type='button' id='volume-dec-button' class='btn btn-dark' onclick='changeVolume("-");'><em class="fas fa-minus-circle"></em></button>
+            <button type='button' id='mute-button' class='btn btn-dark' onclick='toggleMute("true");'><em id='mute-icon' class="fas fa-volume-mute"></em></button>
+            <button type='button' id='like-button' class='btn btn-dark' onclick=''><em class="far fa-thumbs-up"></em></button>
+            <button type='button' id='unlike-button' class='btn btn-dark' onclick=''><em class="far fa-thumbs-down"></em></button>
+		</div>
+		<div id='media-play-list'>
+			<h1>Play list</h1>
+            <ul class="list-group list-group-flush">
+                    <li class="list-group-item" onclick='loadVideo("./video/example.mp4");'>Example-0</li>
+                    <li class="list-group-item" onclick='loadVideo("./video/Example1.mp4");'>Example-1</li>
+                    <li class="list-group-item" onclick='loadVideo("./video/example2.mp4");'>Example-2</li>
+                  </ul>
+		</div>
+	</div>	
+</body>
+</html>
