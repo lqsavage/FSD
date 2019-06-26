@@ -48,8 +48,8 @@ function initialiseMediaPlayer() {
     // need to work on this one more...how to know it's muted?
     videoPlayer.addEventListener('volumechange', function(e) {
         // Update the button to be mute/unmute
-        if (videoPlayer.muted) changeButtonIcon(muteIcon, 'glyphicon-volume-up', 'glyphicon-volume-off');
-        else changeButtonIcon(muteIcon, 'glyphicon-volume-off', 'glyphicon-volume-up');
+        if (videoPlayer.muted) changeButtonIcon(muteIcon, 'glyphicon-headphones', 'glyphicon-volume-off');
+        else changeButtonIcon(muteIcon, 'glyphicon-volume-off', 'glyphicon-headphones');
     }, false);
     videoPlayer.addEventListener('ended', function() { this.pause(); }, false);
 
@@ -102,12 +102,12 @@ function changeVolume(direction) {
 function toggleMute() {
     if (videoPlayer.muted) {
         // Change the cutton to be a mute button
-        changeButtonIcon(muteIcon, 'glyphicon-volume-up', 'glyphicon-volume-off');
+        changeButtonIcon(muteIcon, 'glyphicon-headphones', 'glyphicon-volume-off');
         // Unmute the media player
         videoPlayer.muted = false;
     } else {
         // Change the button to be an unmute button
-        changeButtonIcon(muteIcon, 'glyphicon-volume-off', 'glyphicon-volume-up');
+        changeButtonIcon(muteIcon, 'glyphicon-volume-off', 'glyphicon-headphones');
         // Mute the media player
         videoPlayer.muted = true;
     }
