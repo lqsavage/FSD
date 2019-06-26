@@ -1,0 +1,49 @@
+h1 {
+    text-align: center;
+}
+
+.myplayer {
+    text-align: center;
+    padding: 1em 1em .5em;
+}
+
+video {
+    border: 1px solid #2e52a4;
+    width: 600px;
+    height: 400px;
+    background: #000;
+}
+
+.progress {
+    margin: auto;
+    width: 600px;
+    height: 16px;
+    margin-bottom: 5px;
+    background-color: white;
+}
+
+progress::-moz-progress-bar {
+    background: #2e52a4;
+}
+
+#media-play-list {
+    text-align: left;
+    width: 600px;
+    border-top: 1px solid #020815;
+    margin: auto;
+}
+
+#media-play-list h2 {
+    font-size: 12px;
+}
+
+#play-list {
+    padding: 0;
+    font-size: 12px;
+    list-style-type: none;
+}
+
+#play-list li {
+    cursor: pointer;
+    padding-left: 15px;
+}

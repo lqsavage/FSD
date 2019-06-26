@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Player with HTML5 & Bootstrap</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link href='player.css' rel='stylesheet' />
+    <script src='player.js'></script>
+</head>
+
+<body>
+    <h1>Player with HTML5 & Bootstrap</h1>
+    <div class='myplayer'>
+        <video id='media-video' controls="" preload="none" poster="loading.gif">
+            <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
+            <p>Browser does not support the video tag.</p>
+        </video>
+        <div class="progress">
+            <div id='progress-bar' class="progress-bar bg-dark progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+        </div>
+        <div id='media-controls' style="margin-bottom: 5px;">
+            <button type='button' id='replay-button' class='btn btn-dark' onclick='replayMedia();'>
+                <i class="glyphicon glyphicon-repeat"></i>
+            </button>
+            <button type="button" id='play-pause-button' class="btn btn-dark" onclick='togglePlayPause();'>
+                <i id="play-pause-icon" class="glyphicon glyphicon-play"></i>
+            </button>
+            <button type='button' id='stop-button' class='btn btn-dark' onclick='stopPlayer();'>
+                <i class="glyphicon glyphicon-stop"></i>
+            </button>
+            <button type='button' id='volume-inc-button' class='btn btn-dark' onclick='changeVolume("+");'>
+                <i class="glyphicon glyphicon-plus"></i>
+            </button>
+            <button type='button' id='volume-dec-button' class='btn btn-dark' onclick='changeVolume("-");'>
+                <i class="glyphicon glyphicon-minus"></i>
+            </button>
+            <button type='button' id='mute-button' class='btn btn-dark' onclick='toggleMute("true");'>
+                <i id='mute-icon' class="glyphicon glyphicon-volume-up"></i>
+                <span id='video-volume' class="badge badge-light" style="color: blueviolet;"></span>
+            </button>
+            <button type='button' id='like-button' class='btn btn-dark' onclick='likeVideo()'>
+                <i class="glyphicon glyphicon-thumbs-up"></i>
+                <span id='video-like' class="badge badge-light" style="color: blue;"></span>
+            </button>
+            <button type='button' id='unlike-button' class='btn btn-dark' onclick='unlikeVideo()'>
+                <i class="glyphicon glyphicon-thumbs-down"></i>
+                <span id='video-unlike' class="badge badge-light" style="color: red;"></span>
+            </button>
+        </div>
+        <div id='media-play-list'>
+            <h1>Play list</h1>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" onclick='loadVideo("http://techslides.com/demos/sample-videos/small.mp4");'>1. Small.mp4</li>
+                <li class="list-group-item" onclick='loadVideo("https://www.paypalobjects.com/webstatic/mktg/videos/PayPal_AustinSMB_baseline.mp4");'>2. PayPal_AustinSMB_baseline.mp4</li>
+                <li class="list-group-item" onclick='loadVideo("http://media.w3.org/2010/05/sintel/trailer.mp4");'>3. Trailer.mp4</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
