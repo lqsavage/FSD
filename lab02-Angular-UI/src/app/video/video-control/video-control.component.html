@@ -1,0 +1,16 @@
+<div><button type='button' id='replay-button' class='btn btn-dark' (click)='replayMedia()'>
+    <fa-icon [icon]="['fas', 'reply']"></fa-icon>
+</button>
+<button type="button" class="btn btn-dark"  (click)='togglePlayPause()'>
+    <fa-icon *ngIf="play" [icon]="['fas', 'pause']"></fa-icon>
+    <fa-icon *ngIf="!play" [icon]="['fas', 'play']"></fa-icon>
+</button>
+<button type='button' class='btn btn-dark' (click)='stopPlayer();'><fa-icon [icon]="['fas', 'stop']"></fa-icon></button>
+<button type='button' id='volume-inc-button' class='btn btn-dark' (click)='changeVolume("+")'><fa-icon [icon]="['fas', 'plus']"></fa-icon></button>
+<button type='button' id='volume-dec-button' class='btn btn-dark' (click)='changeVolume("-")'><fa-icon [icon]="['fas', 'minus']"></fa-icon></button>
+<button type='button' class='btn btn-dark' (click)='toggleMute("true")'>
+  <fa-icon *ngIf="!mute" [icon]="['fas', 'volume-up']"></fa-icon>
+  <fa-icon *ngIf="mute" [icon]="['fas', 'volume-mute']"></fa-icon>
+</button>
+<!-- <button type='button' id='like-button' class='btn btn-dark' (click)='likeVideo()'><fa-icon [icon]="['fas', 'thumbs-up']"></fa-icon></button>
+<button type='button' id='unlike-button' class='btn btn-dark' (click)='unlikeVideo()'><fa-icon [icon]="['fas', 'thumbs-down']"></fa-icon></button></div> -->
