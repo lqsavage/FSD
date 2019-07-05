@@ -13,7 +13,10 @@ var progressBar;
 var like;
 var unlike;
 var volume;
-
+var s_like_key;
+var s_unlike_key;
+var btnLike;
+var btnUnlike;
 
 function initialiseMediaPlayer() {
     // Get a handle to the player
@@ -28,6 +31,8 @@ function initialiseMediaPlayer() {
     like = document.getElementById('video-like');
     unlike = document.getElementById('video-unlike');
     volume = document.getElementById('video-volume');
+    btnLike = document.getElementById('like-button');
+    btnUnlike = document.getElementById('unlike-button');
 
     // Hide the browser's default controls
     videoPlayer.controls = false;
@@ -54,16 +59,31 @@ function initialiseMediaPlayer() {
     videoPlayer.addEventListener('ended', function() { this.pause(); }, false);
 
     // initial web storage
-    if ((localStorage.getItem('like') == undefined) && localStorage.getItem('unlike') == undefined) {
-        localStorage.setItem('like', 0);
-        localStorage.setItem('unlike', 0)
-        like.innerText = localStorage.getItem('like');
-        unlike.innerText = localStorage.getItem('unlike');
-    } else {
-        like.innerText = localStorage.getItem('like');
-        unlike.innerText = localStorage.getItem('unlike');
-    }
+    initialWebStorage();
     volume.innerText = videoPlayer.volume * 10;
+}
+
+function initialWebStorage() {
+    var srcString = videoPlayer.src;
+    if (srcString.replace(/(^s*)|(s*$)/g, "").length == 0) {
+        btnLike.disabled = true;
+        btnUnlike.disabled = true;
+    } else {
+        btnLike.disabled = false;
+        btnUnlike.disabled = false;
+        s_like_key = videoPlayer.src + '_like';
+        s_unlike_key = videoPlayer.src + '_unlike'
+            // initial web storage
+        if ((localStorage.getItem(s_like_key) == undefined) && localStorage.getItem(s_unlike_key) == undefined) {
+            localStorage.setItem(s_like_key, 0);
+            localStorage.setItem(s_unlike_key, 0)
+            like.innerText = localStorage.getItem(s_like_key);
+            unlike.innerText = localStorage.getItem(s_unlike_key);
+        } else {
+            like.innerText = localStorage.getItem(s_like_key);
+            unlike.innerText = localStorage.getItem(s_unlike_key);
+        }
+    }
 }
 
 function togglePlayPause() {
@@ -148,6 +168,7 @@ function loadVideo() {
             videoPlayer.src = arguments[i];
             videoPlayer.load();
             changeButtonIcon(playPauseIcon, 'glyphicon-pause', 'glyphicon-play');
+            initialWebStorage();
             break;
         }
     }
@@ -172,15 +193,14 @@ function resetPlayer() {
 
 // Click the like currently video
 function likeVideo() {
-    var c_number = localStorage.getItem('like');
-    localStorage.setItem('like', parseInt(c_number) + 1);
-    like.innerText = localStorage.getItem('like');
+    var c_number = localStorage.getItem(s_like_key);
+    localStorage.setItem(s_like_key, parseInt(c_number) + 1);
+    like.innerText = localStorage.getItem(s_like_key);
 }
 
 // Click the unlike currently video
 function unlikeVideo() {
-    var c_number = localStorage.getItem('unlike');
-    localStorage.setItem('unlike', parseInt(c_number) + 1)
-    unlike.innerText = localStorage.getItem('unlike');
-
+    var c_number = localStorage.getItem(s_unlike_key);
+    localStorage.setItem(s_unlike_key, parseInt(c_number) + 1)
+    unlike.innerText = localStorage.getItem(s_unlike_key);
 }
