@@ -18,7 +18,7 @@ export class Video {
 })
 export class VideoListComponent {
 
-  @Input() video: Video;
+  @Input() videos: Video;
 
 
   constructor() {

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Customize Vedio Player on HTML5n';
+  title = 'Customize Vedio Player on HTML5';
 }
