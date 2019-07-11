@@ -1,3 +1,5 @@
+<div class="container">
 <app-video-view #videoView></app-video-view>
 <app-video-control [videoView]="videoView"></app-video-control>
-<app-video-list *ngFor="let video of videos" [video]="video"></app-video-list>
+<app-video-list [videos]="videos"></app-video-list>
+</div>
