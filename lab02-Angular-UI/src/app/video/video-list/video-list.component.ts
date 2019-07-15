@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 export class Video {
   title: string;
@@ -20,9 +20,15 @@ export class VideoListComponent {
 
   @Input() videos: Video;
 
+  @Output() addVideo = new EventEmitter<boolean>();
+
 
   constructor() {
   }
+
+  loadVideoAddComponent() {
+    this.addVideo.emit(true);
+ }
 
 
 
