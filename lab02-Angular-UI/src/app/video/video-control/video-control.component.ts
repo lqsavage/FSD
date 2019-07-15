@@ -79,6 +79,12 @@ export class VideoControlComponent implements OnInit {
     this.play = true;
   }
 
+  thumbsUp() {
+    console.log('thumbsup');
+  }
 
+  thumbsDown() {
+    console.log('thumbsdwon');
+  }
 
 }

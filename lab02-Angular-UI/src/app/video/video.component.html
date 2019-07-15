@@ -2,5 +2,5 @@
 <app-video-view #videoView></app-video-view>
 <app-video-control [videoView]="videoView"></app-video-control>
 <app-video-add *ngIf="loadVideoAdd" (cancelVideo)="cancelVideo($event)"></app-video-add>
-<app-video-list (addVideo)="addVideo($event)" [videos]="videos"></app-video-list>
+<app-video-list (addVideo)="addVideo($event)" (delVideoEvent)="delVideo($event)" [videos]="videos"></app-video-list>
 </div>

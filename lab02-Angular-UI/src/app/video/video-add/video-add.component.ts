@@ -15,7 +15,7 @@ export class VideoAddComponent implements OnInit {
   videos: [];
 
   video: Video = {
-    id: 6,
+    id: undefined,
     title : '',
     url: '',
     status: '',
@@ -38,9 +38,7 @@ export class VideoAddComponent implements OnInit {
 
   }
   onAddVideo() {
-    this.videoservice.addVideoData(this.video).subscribe(data => {
-      console.log(data);
-    });
+    this.videoservice.addVideoData(this.video).subscribe(video => this.video = video);
   }
 
 }

@@ -63,15 +63,16 @@ export class VideoComponent implements OnInit, AfterViewInit {
   }
 
   getData() {
-    this.videoservice.getVideoData().subscribe(data => {
-      this.videos = data;
-    });
+    this.videoservice.getVideoData().subscribe(videos => this.videos = videos);
   }
 
   addVideo(event) {
     this.loadVideoAdd = event;
   }
 
+  delVideo(event) {
+    this.videoservice.delVideoData(event);
+  }
   cancelVideo(event) {
     this.loadVideoAdd = event;
   }
