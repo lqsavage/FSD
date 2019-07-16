@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8">
+            <div id="videoContainer" class="video-player mb-2">
+                <app-player (videoTimeUpdated)="handleTimeUpdate($event)" (videoEnded)="handleVideoEnded()"></app-player>
+                <app-controls [muted]="video.muted" [likes]="likes" [unlikes]="unlikes" [ratio]="ratio" (playClicked)="play()" (pauseClicked)="pause()" (stopClicked)="stop()" (volumeClicked)="volume($event)" (muteClicked)="toggleMute()" (voteClicked)="vote($event)"></app-controls>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <app-playlist [sources]="sources" (sourceSelected)="handleSourceSelected($event)"></app-playlist>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<nav>
+    <ul #menuRef role="menubar" class="menu">
+        <li class="menu-item" [routerLink]="['/sources']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="fas fa-folder-plus"></i>
+            <span>Add Video</span>
+        </li>
+        <li class="menu-item" [routerLink]="['/play']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="fas fa-video"> </i>
+            <span>Video Play</span>
+        </li>
+    </ul>
+</nav>
