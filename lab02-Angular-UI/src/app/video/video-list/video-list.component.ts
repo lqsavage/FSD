@@ -1,15 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { VideoServiceService } from 'src/app/service/video-service.service';
+import { Video } from '../../model/video';
 
-export class Video {
-  title: string;
-  url: string;
-  status: string;
-  approved: boolean;
-  likes: number;
-  unlike: number;
-  currentStatus: string;
-  exitplayprogress: number;
-}
 
 @Component({
   selector: 'app-video-list',
@@ -18,13 +10,49 @@ export class Video {
 })
 export class VideoListComponent {
 
-  @Input() videos: Video;
+  @Input() videos: Video[];
 
+  @Output() addVideo = new EventEmitter<boolean>();
 
-  constructor() {
+  @Output() delVideoEvent = new EventEmitter<Video>();
+
+  updateVideo: Video;
+
+  constructor(private videoservice: VideoServiceService) {
   }
 
+  loadVideoAddComponent() {
+    this.addVideo.emit(true);
+ }
 
 
+ delVideo(video: Video): void {
+
+    this.delVideoEvent.emit(video);
+  //  this.videos = this.videos.filter(v => v !== video);
+  //  this.videoservice.delVideoData(video).subscribe();
+ }
+
+//  editVideo(video: Video): void {
+//   this.videoservice.updateVideo(video).subscribe();
+// }
+
+edit(video: Video) {
+  this.updateVideo = video;
+}
+
+save() {
+  this.updateVideo.approved = false;
+  this.videoservice.updateVideo(this.updateVideo).subscribe(updateVideo => this.updateVideo = updateVideo);
+}
+
+approved(video: Video) {
+  video.approved = true;
+  this.videoservice.updateVideo(video).subscribe();
+}
+
+loadVideo(video: Video) {
+  console.log(video);
+}
 
 }

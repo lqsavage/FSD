@@ -1,29 +1,79 @@
 <div class="container-fluid">
-
-    <table class="table table-dark table-hover">
-        <thead>
-          <tr>
-            <th scope="col">S.no</th>
-            <th scope="col">Title</th>
-            <th scope="col">URL</th>
-            <th scope="col">Action</th>
-            <th scope="col">Like</th>
-            <th scope="col">Unlike</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let video of videos; index as i">
-              <th scope="row" class="col-sm-2">{{ i }}</th>
-              <td class="col-sm-3">{{video.title}}</td>
-              <td></td>
-              <td>Edit | Delete | Approve</td>
-              <td><span class="badge badge-success badge-pill">
-                  <fa-icon [icon]="['fas', 'thumbs-up']"></fa-icon>{{video.likes}}
-                </span></td>
-                <td><span class="badge badge-primary badge-pill">
-                    <fa-icon [icon]="['fas', 'thumbs-down']"></fa-icon> {{video.unlike}}
-                  </span></td>
-            </tr>
-            </tbody>
-            </table>
+    <div class="modal fade" id="updateVideoModal" tabindex="-1" role="dialog" aria-labelledby="updateVideoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update Video</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div *ngIf="updateVideo" class="modal-body" style="text-align: start">
+                <label>Title:
+                    <strong>{{ updateVideo.title }}</strong>
+                  </label>
+                    <label>Url:
+                      <input style="width: 400px" [(ngModel)]="updateVideo.url"/>
+                    </label>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" (click)="save()" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th scope="col"><button type="button" (click)="loadVideoAddComponent()" class="btn btn-dark">
+          <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+        </button></th>
+        <th scope="col" style="text-align: start">Title</th>
+        <th scope="col" style="text-align: start">URL</th>
+        <th scope="col">Action</th>
+        <th scope="col">Like</th>
+        <th scope="col">Unlike</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let video of videos">
+        <th scope="row" class="col-sm-1">{{ video.id }}</th>
+        <td class="col-sm-3" style="text-align: start">{{ video.title }}</td>
+        <td class="col-sm-4" style="text-align: start">{{ video.url }}</td>
+        <td>
+          <button type="button" (click)="edit(video)" class="btn btn-dark" data-toggle="modal" data-target="#updateVideoModal">
+            <fa-icon [icon]="['fas', 'edit']"></fa-icon>
+          </button>
+          |
+          <button type="button" (click)="delVideo(video)" class="btn btn-dark">
+            <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+          </button>
+          |
+          <button
+            *ngIf="!video.approved; else elseBlock"
+            type="button"
+            (click)="approved(video)"
+            class="btn btn-dark"
+          >
+            <fa-icon [icon]="['fas', 'check']"></fa-icon></button
+          ><ng-template #elseBlock
+            ><button type="button" (click)="loadVideo(video)" class="btn btn-dark">
+              <fa-icon [icon]="['fas', 'play']"></fa-icon></button
+          ></ng-template>
+        </td>
+        <td>
+          <span class="badge badge-success badge-pill">
+            <fa-icon [icon]="['fas', 'thumbs-up']"></fa-icon>{{ video.likes }}
+          </span>
+        </td>
+        <td>
+          <span class="badge badge-primary badge-pill">
+            <fa-icon [icon]="['fas', 'thumbs-down']"></fa-icon>
+            {{ video.unlike }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

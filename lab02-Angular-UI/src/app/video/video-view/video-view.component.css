@@ -8,7 +8,6 @@ video {
 width:600px;
 height:400px; */
   background:#000;
-  position: relative;
 }
 .progress {
   margin-top: -80px;

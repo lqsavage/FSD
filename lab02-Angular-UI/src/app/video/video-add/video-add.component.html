@@ -1,0 +1,46 @@
+<div class="card border-dark mb-2"  style="width: 600px; margin: auto;">
+  <h5 class="card-header">Add New Video</h5>
+  <div class="card-body">
+    <div clas="container">
+      <form name="form" (ngSubmit)="f.form.valid && onAddVideo()" #f="ngForm" novalidate>
+          <div class="row" style="margin: 5px;text-align: start;">
+              <div class="col-sm-4">
+          <label for="title"><strong>Title:</strong></label>
+          </div>
+          <div class="col-sm-8">
+          <input type="text" style="width: 350px;" placeholder="Enter Title" name="title" [(ngModel)]="video.title" #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && title.invalid }" required>
+          <div *ngIf="f.submitted && title.invalid" class="invalid-text">
+            <div *ngIf="title.errors.required" style="color: red">Title is required</div>
+          </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin: 5px;text-align: start;">
+          <div class="col-sm-4">
+          <label for="url"><strong>Video URL:</strong></label>
+        </div>
+        <div class="col-sm-8">
+          <input type="url" style="width: 350px;" placeholder="Enter Video URL" name="url" pattern="https?://.+" [(ngModel)] ="video.url" #url="ngModel" [ngClass]="{ 'is-invalid': f.submitted && url.invalid }"  required url>
+          <div *ngIf="f.submitted && url.invalid" class="invalid-text">
+            <div *ngIf="url.errors.required" style="color: red">Url is required</div>
+            <div *ngIf="url.errors.pattern" style="color: red">Must be a valid Video URL</div>
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10" style="text-align: start">
+              <button type="button" (click)="onCancel()" class="btn btn-dark">
+                  <fa-icon [icon]="['fas', 'times']"></fa-icon>
+              </button>
+          </div>
+          <div class="col-sm-2" style="text-align: end">
+
+            <button type="submit"  class="btn btn-dark">
+                <fa-icon [icon]="['fas', 'save']"></fa-icon>
+              </button>
+            </div>
+          </div>
+          </form>
+        </div>
+  </div>
+</div>

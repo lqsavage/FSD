@@ -47,7 +47,11 @@ export class VideoControlComponent implements OnInit {
     }
   }
 
-  changeVolume(direction) {}
+  changeVolume(direction) {
+    if (direction === '+') this.videoView.videoPlayer.nativeElement.volume += this.videoView.videoPlayer.nativeElement.volume == 1 ? 0 : 0.1;
+    else this.videoView.videoPlayer.nativeElement.volume -= (this.videoView.videoPlayer.nativeElement.volume == 0 ? 0 : 0.1);
+    this.videoView.videoPlayer.nativeElement.volume = parseFloat(this.videoView.videoPlayer.nativeElement.volume).toFixed(1);
+  }
 
   // Update the progress bar
   updateProgressBar() {
@@ -75,6 +79,12 @@ export class VideoControlComponent implements OnInit {
     this.play = true;
   }
 
+  thumbsUp() {
+    console.log('thumbsup');
+  }
 
+  thumbsDown() {
+    console.log('thumbsdwon');
+  }
 
 }
