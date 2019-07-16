@@ -12,6 +12,7 @@ import { HeaderComponent, SidemenuComponent } from './shared';
 import { CoreModule } from './core/core.module';
 import { VideoPlayerModule } from './video-player';
 import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, SidemenuComponent],
   imports: [
