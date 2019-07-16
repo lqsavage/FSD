@@ -34,6 +34,13 @@
       "url": "https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_1280_10MG.mp4",
       "duration": "0:18",
       "approved": true
+    },
+    {
+      "id": 1563258924286,
+      "title": "Big buck bunny 720p 2mb",
+      "url": "https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4",
+      "duration": "",
+      "approved": true
     }
   ]
 }

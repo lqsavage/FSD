@@ -12,6 +12,7 @@ const VOTE_DOWN = 'down';
   templateUrl: './video-player.component.html',
   styleUrls: ['./video-player.component.css'],
 })
+
 export class VideoPlayerComponent implements OnInit {
   @ViewChild(PlayerComponent, { static: true })
   playerComponent: PlayerComponent;
