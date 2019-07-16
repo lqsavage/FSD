@@ -1,8 +1,15 @@
-#URL https://github.com/yuanbing1113/FSD
+# JSON SERVER
+
+npm install json-server -g
+
+https://github.com/typicode/json-server
+
+json-server watch data.json
 
 # Lab02AngularUI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.4.
+>>>>>>> 53e77a718a5adcd8c9776434f52c909f41965435
 
 ## Development server
 
