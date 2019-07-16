@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Video } from '../../model/video';
-import { VideoServiceService } from 'src/app/service/video-service.service';
 
 
 @Component({
@@ -12,7 +11,8 @@ export class VideoAddComponent implements OnInit {
 
   @Output() cancelVideo = new EventEmitter<boolean>();
 
-  videos: [];
+  @Output() addVideo = new EventEmitter<Video>();
+  // videos: Video[];
 
   video: Video = {
     id: undefined,
@@ -27,7 +27,7 @@ export class VideoAddComponent implements OnInit {
 
   };
 
-  constructor(private videoservice: VideoServiceService) { }
+  constructor() { }
 
   ngOnInit() {
   }
@@ -37,8 +37,8 @@ export class VideoAddComponent implements OnInit {
     this.cancelVideo.emit(false);
 
   }
-  onAddVideo() {
-    this.videoservice.addVideoData(this.video).subscribe(video => this.video = video);
+  onAddVideo(video: Video): void {
+    this.addVideo.emit(this.video);
   }
 
 }
