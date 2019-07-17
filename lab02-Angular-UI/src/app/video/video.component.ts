@@ -3,11 +3,11 @@ import {
   OnInit,
   AfterViewInit,
   ViewChild,
-  ElementRef
 } from "@angular/core";
 import { VideoServiceService } from "../service/video-service.service";
 import { VideoViewComponent } from "./video-view/video-view.component";
 import { VideoControlComponent } from "./video-control/video-control.component";
+import { Video } from '../model/video';
 
 @Component({
   selector: "app-video",
@@ -19,7 +19,7 @@ export class VideoComponent implements OnInit, AfterViewInit {
   childVideoView: VideoViewComponent;
   @ViewChild(VideoControlComponent, { static: false })
   childVideoCtrl: VideoControlComponent;
-  videos: any;
+  videos: Video[];
   loadVideoAdd = false;
 
   constructor(private videoservice: VideoServiceService) {}
@@ -66,12 +66,17 @@ export class VideoComponent implements OnInit, AfterViewInit {
     this.videoservice.getVideoData().subscribe(videos => this.videos = videos);
   }
 
-  addVideo(event) {
+  addVideoComponent(event) {
     this.loadVideoAdd = event;
   }
 
+  addVideo(event) {
+    this.videoservice.addVideoData(event).subscribe(video => this.videos.push(video));
+  }
+
   delVideo(event) {
-    this.videoservice.delVideoData(event);
+    this.videos = this.videos.filter(v => v !== event);
+    this.videoservice.delVideoData(event).subscribe();
   }
   cancelVideo(event) {
     this.loadVideoAdd = event;
