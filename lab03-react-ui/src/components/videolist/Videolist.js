@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 
 export class Videolist extends Component {
+
+  
   render() {
     return (
       <Table striped bordered hover variant="dark">
@@ -39,17 +41,15 @@ export class Videolist extends Component {
                   <FontAwesomeIcon icon="edit" />
                 </button>
                 |
-                <button type="button" className="btn btn-dark">
+                <button onClick={this.props.delVideo.bind(this, video.id)} type="button" className="btn btn-dark">
                   <FontAwesomeIcon icon="trash" />
                 </button>
-                |
+                | {video.approved ? (
                 <button type="button" className="btn btn-dark">
-                  {video.approved ? (
-                    <FontAwesomeIcon icon="play" />
-                  ) : (
-                    <FontAwesomeIcon icon="check" />
-                  )}
-                </button>
+                  <FontAwesomeIcon icon="play" />
+                </button>) : (<button onClick={this.props.approveVideo.bind(this, video)} type="button" className="btn btn-dark">
+                <FontAwesomeIcon icon="check" />
+                </button>)}
               </td>
               <td>
                 <span className="badge badge-success badge-pill">

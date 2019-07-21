@@ -16,7 +16,28 @@ export class Video extends Component {
         .then(res => this.setState({
             videos : res.data
         }))
+    }
 
+    someMethod() {
+        console.log('bar');
+    }
+
+    // Delete Video
+    delVideo = (id) => {
+        // console.log(id)
+        this.setState({
+            videos: [...this.state.videos.filter(video => video.id !== id)]
+        })
+        axios.delete(`http://localhost:8080/youtube/${id}`)
+    }
+
+    // Approve Video
+    approveVideo = (video) => {
+        video.approved = true
+        this.setState({
+            videos: [...this.state.videos]
+        })
+        axios.put(`http://localhost:8080/youtube/${video.id}`, video)
     }
 
     render() {
@@ -25,7 +46,7 @@ export class Video extends Component {
                 <Videoview />
                 <Videoctrl />
                 <Videoadd />
-                <Videolist videos={this.state.videos}/>
+                <Videolist videos={this.state.videos} delVideo={this.delVideo} approveVideo={this.approveVideo}/>
             </div>
         )
     }
