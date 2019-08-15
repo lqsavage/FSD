@@ -6,9 +6,6 @@ import com.iihtibm.registration.validate.ValidateCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,12 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 import javax.sql.DataSource;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author savagelee
@@ -70,9 +63,9 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                     .failureHandler(authenticationFailureHandler) // login failure handler
                     .and()
                 .rememberMe()
-                    .tokenRepository(persistentTokenRepository()) // 配置 token 持久化仓库
-                    .tokenValiditySeconds(3600) // remember 过期时间，单为秒
-                    .userDetailsService(userDetailService) // 处理自动登录逻辑
+                    .tokenRepository(persistentTokenRepository()) // Persistent token repository
+                    .tokenValiditySeconds(3600) // Token expiration time(seconds)
+                    .userDetailsService(userDetailService) // login process
                 .and()
                     .authorizeRequests() // authorization configuration
                     .antMatchers("/authentication/require", "/login.html", "/login_2.html",

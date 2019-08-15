@@ -1,20 +1,14 @@
 package com.iihtibm.registration.web.controller;
 
-import com.iihtibm.registration.domain.Msg;
 import com.iihtibm.registration.domain.MyUser;
 import com.iihtibm.registration.domain.dto.MyUserDTO;
 import com.iihtibm.registration.security.IsAdmin;
 import com.iihtibm.registration.security.browser.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 /**
  * @author savagelee
