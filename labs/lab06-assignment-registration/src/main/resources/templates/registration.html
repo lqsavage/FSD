@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="application/json; charset=UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/login.css" type="text/css">
+</head>
+<body>
+<form class="login-page" action="/registration" method="post">
+    <div class="form">
+        <h3>User Login Form</h3>
+        <input type="text" placeholder="username" name="reg_username" required="required"/>
+        <input type="password" placeholder="password" name="reg_password" required="required"/>
+        <input type="password" placeholder="confirm password" name="reg_password_confirm" required="required"/>
+        <input type="text" placeholder="email" name="reg_email" required="required"/>
+        <input type="text" placeholder="full name" name="reg_fullname" required="required"/>
+        <div class="form-group login-group-checkbox">
+            <input type="radio" placeholder="ROLE_USER" name="reg_role" id="reg_role_user" required="required" />
+            <label for="reg_role_user">user</label>
+            <input type="radio" placeholder="ROLE_USER" name="reg_role" id="reg_role_admin" required="required" />
+            <label for="reg_role_admin">admin</label>
+        </div>
+        <button type="submit">Register</button>
+    </div>
+</form>
+<script>
+    function refresh(obj) { obj.src = "/code/image?" + Math.random(); }
+    function mouseover(obj) { obj.style.cursor = "pointer"; }
+</script>
+</body>
+</html>

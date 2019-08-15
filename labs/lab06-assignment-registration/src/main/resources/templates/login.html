@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/login.css" type="text/css">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/iCheck/custom.css}" rel="stylesheet"/>
+    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<form class="login-page" action="/login" method="post">
+    <div class="form">
+        <h3>User Login Form</h3>
+        <input type="text" placeholder="username" name="username" required="required"/>
+        <input type="password" placeholder="password" name="password" required="required"/>
+        <span style="display: inline">
+            <input type="text" name="imageCode" placeholder="validation code" style="width: 50%;"/>
+            <img src="/code/image" title="Click for refresh" onclick="refresh(this)" onmouseover="mouseover(this)"/>
+        </span>
+        <div class="form-group">
+            <div class="checkbox i-checks">
+                <label><input type="checkbox" name="remember-me" /><i></i> Remember me </label>
+            </div>
+        </div>
+        <button type="submit">Login</button>
+    </div>
+</form>
+<script>
+    function refresh(obj) { obj.src = "/code/image?" + Math.random(); }
+    function mouseover(obj) { obj.style.cursor = "pointer"; }
+</script>
+</body>
+</html>
