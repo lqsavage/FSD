@@ -2,6 +2,8 @@ package com.iihtibm.registration.security.browser;
 
 import com.iihtibm.registration.handler.MyAuthenticationFailureHandler;
 import com.iihtibm.registration.handler.MyAuthenticationSucessHandler;
+import com.iihtibm.registration.handler.MyLogoutHandler;
+import com.iihtibm.registration.handler.MyLogoutSuccessHandler;
 import com.iihtibm.registration.validate.ValidateCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -61,6 +63,12 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/login") // The login URL
                     .successHandler(authenticationSucessHandler) // Login successfully handler
                     .failureHandler(authenticationFailureHandler) // login failure handler
+                    .and()
+                .logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/logoutSuccess")
+                    .invalidateHttpSession(true).deleteCookies("cookiename")
+                    .addLogoutHandler(new MyLogoutHandler()).logoutSuccessHandler(new MyLogoutSuccessHandler())
                     .and()
                 .rememberMe()
                     .tokenRepository(persistentTokenRepository()) // Persistent token repository
