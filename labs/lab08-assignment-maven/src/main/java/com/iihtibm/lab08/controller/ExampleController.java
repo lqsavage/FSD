@@ -9,4 +9,9 @@ public class ExampleController {
     String home() {
         return "Lab08-Assignment-Maven.";
     }
+
+    @RequestMapping("/welcome")
+    String welcome() {
+        return "welcomeapi.";
+    }
 }
